@@ -1,0 +1,17 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Day {
+  id        Int      @id @default(autoincrement())
+  /// YYYY-MM-DD (stored as plain string to avoid timezone gotchas)
+  dateStr   String   @unique
+  who       String?
+  lesson    String?
+  updatedAt DateTime @updatedAt
+}
